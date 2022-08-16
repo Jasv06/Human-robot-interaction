@@ -13,3 +13,7 @@ The documentation of this repository can be found at . This documentation includ
    cd ~/catkin_ws
    catkin_make
 ```
+**2.** Source your current catkin workspace.
+```bash 
+source ~/catkin_ws/devel/setup.bash
+```
