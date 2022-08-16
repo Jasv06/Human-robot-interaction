@@ -1,6 +1,6 @@
 # Human Robot Interaction
 ## Requierments
-You should have [Ubuntu 20.04](https://releases.ubuntu.com/20.04/), [ROS Noetic](http://wiki.ros.org/noetic), [Leap Motion SDK](https://developer.leapmotion.com/tracking-software-download), [Python 2](https://www.python.org/downloads/release/python-272/), and [Python 3](https://www.python.org/downloads/) installed on your device.
+You should have [Ubuntu 20.04](https://releases.ubuntu.com/20.04/), [ROS Noetic](http://wiki.ros.org/noetic), [Leap Motion SDK](https://developer.leapmotion.com/tracking-software-download), [Python 2](https://www.python.org/downloads/release/python-272/), and [Python 3](https://www.python.org/downloads/) installed on your device. For more information on how to perfom the correct installation of the requierments mentioned above please refer to [Chapter 5 subsection 1]() from the documentation.
 ## Features
 ## Environment Setup
 ## Documentation
