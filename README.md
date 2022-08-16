@@ -6,3 +6,10 @@ You should have [Ubuntu 20.04](https://releases.ubuntu.com/20.04/), [ROS Noetic]
 ## Documentation
 The documentation of this repository can be found at . This documentation includes a description of the sensors and the robot arm which were used to develop the industrial-like interaction.
 ## Installation
+**1.** Go to the source folder of your catkin workspace.
+'''bash 
+   cd ~/catkin_ws/src
+   git clone 
+   cd ~/catkin_ws
+   catkin_make
+'''
