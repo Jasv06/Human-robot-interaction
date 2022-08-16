@@ -1,2 +1,2 @@
-## Demonstrator Flow chart
+## Demonstration Flow chart
 ![](Images/rqt_graph.png)
