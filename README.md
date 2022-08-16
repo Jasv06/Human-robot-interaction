@@ -8,10 +8,10 @@ The documentation of this repository can be found at . This documentation includ
 ## Installation
 **1.** Go to the source folder of your catkin workspace.
 ```bash 
-   cd ~/catkin_ws/src
-   git clone https://github.com/Jasv06/human_robot_interaction.git
-   cd ~/catkin_ws
-   catkin_make
+cd ~/catkin_ws/src
+git clone https://github.com/Jasv06/human_robot_interaction.git
+cd ~/catkin_ws
+catkin_make
 ```
 **2.** Source your current catkin workspace.
 ```bash 
