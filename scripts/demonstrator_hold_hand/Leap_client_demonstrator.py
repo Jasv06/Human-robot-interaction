@@ -60,7 +60,7 @@ class LeapMotionListener(Leap.Listener):
            UDPSocket.sendto(info ,AddressPort)
            
         self.id = LeapMotionListener.ctr
-        #print('IDDDDDDDDD/n/n/n/n/n/',self.id)
+        
 
         
         if handnummer > 0:
