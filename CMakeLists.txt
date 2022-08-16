@@ -222,6 +222,7 @@ include_directories(
 #target_link_libraries(client ${catkin_LIBRARIES})
 #target_link_libraries(client Leap)
 catkin_install_python(PROGRAMS scripts/demonstrator_hold_hand/hand_life_demonstrator.py scripts/demonstrator_hold_hand/hand_status_demonstrator.py scripts/demonstrator_hold_hand/LeapListener_demonstrator.py scripts/demonstrator_hold_hand/Leap_server_demonstrator.py scripts/demonstrator_hold_hand/robot_control_demonstrator.py
+scripts/Industrial_like_robot/hand_life_industrial.py scripts/Industrial_like_robot/hand_status_industrial.py scripts/Industrial_like_robot/LeapListener_industrial.py scripts/Industrial_like_robot/Leap_server_industrial.py scripts/Industrial_like_robot/robot_control_industrial.py
 DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
