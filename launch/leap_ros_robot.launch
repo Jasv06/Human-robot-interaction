@@ -40,10 +40,10 @@
        <param name="load_configs"                    value="$(arg load_configs)"/>
      </node>
         
-     <node name="Leap_data" pkg="human_robot_interaction" type="Leap_server.py" />
-     <node name="XYZ_robot_coordinates" pkg="human_robot_interaction" type="LeapListener.py" />
-     <node name="Hand_data" pkg="human_robot_interaction" type="hand_status.py" />
-     <node name="Hand_life" pkg="human_robot_interaction" type="hand_life.py" />
-     <node name="rx150_robot_manipulation" pkg="human_robot_interaction" type="robot_control.py" />
+     <node name="Leap_data" pkg="human_robot_interaction" type="Leap_server_demonstrator.py" />
+     <node name="XYZ_robot_coordinates" pkg="human_robot_interaction" type="LeapListener_demonstrator.py" />
+     <node name="Hand_data" pkg="human_robot_interaction" type="hand_status_demonstrator.py" />
+     <node name="Hand_life" pkg="human_robot_interaction" type="hand_life_demonstrator.py" />
+     <node name="rx150_robot_manipulation" pkg="human_robot_interaction" type="robot_control_demonstrator.py" />
 
 </launch>
