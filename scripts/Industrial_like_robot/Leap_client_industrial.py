@@ -66,16 +66,16 @@ class LeapMotionListener(Leap.Listener):
             print "Hands: %d" % (handnummer)
                      
         for hand in frame.hands:
-            handType = " Left Hand " if hand.is_left else " Right Hand "
-            #print handType + "Hand ID: " + str(hand.id) + " Palm Position: " + str(hand.palm_position)
+            handType = "Left Hand " if hand.is_left else "Right Hand "
+            print handType + "Hand ID: " + str(hand.id) + " Palm Position: " + str(hand.palm_position)
             
             life_time_of_hand = hand.time_visible
-            #print("life time of hand in sensor: %f" % life_time_of_hand)
-            #print("mano abierta o cerrada: %f" % hand.grab_strength)
+            print("life time of hand in sensor: %f" % life_time_of_hand)
+            print("mano abierta o cerrada: %f" % hand.grab_strength)
             
             hand_direction = hand.direction
             
-            #print(hand.palm_normal)
+            print(hand.palm_normal)
             print(hand.palm_velocity)
             
             strength = hand.grab_strength

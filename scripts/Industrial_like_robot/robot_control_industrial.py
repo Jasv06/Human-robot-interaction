@@ -81,7 +81,9 @@ def main():
       
    r = rospy.Rate(100)
    
-   id_falso = 0
+   counter_uno = 0
+   
+   counter_dos = 0
    
    while not rospy.is_shutdown():
       
@@ -99,33 +101,40 @@ def main():
       number_of_hands = hands_number
       status_of_hands = hand_status
             
-
-      if number_of_hands > 0 and identification_id != id_falso and hand_life >= 4: 
+      x_rate = x_rate_of_change
+      y_rate = y_rate_of_change
+      z_rate = z_rate_of_change
+      
+      palm_pointing = palm_direction
+      
+      if number_of_hands == 1 and counter_uno == counter_dos and hand_life >= 0.5: 
+         
          bot.arm.set_ee_pose_components(x=0.18,z=0.2)
          bot.gripper.open()
-         time.sleep(1)
+         time.sleep(0.5)
          bot.arm.set_single_joint_position("waist", -np.pi/2.0)
          bot.arm.set_ee_cartesian_trajectory(x = 0.15,z=0.02)    
          bot.arm.set_ee_cartesian_trajectory(x=0.08,z=-0.12)
          bot.gripper.close()
-         time.sleep(1)
+         time.sleep(0.5)
          bot.arm.set_ee_cartesian_trajectory(x=-0.08,z=0.12)
-         time.sleep(1)
+         time.sleep(0.5)
          bot.arm.set_ee_cartesian_trajectory(x=-0.1, z=0.16)
-         time.sleep(1)
+         time.sleep(0.5)
          bot.arm.set_single_joint_position("waist", 0)
-         time.sleep(1)
-         id_falso = identification_id
-         print(id_falso)
+         time.sleep(0.5)
          RO = bot.arm.get_joint_commands()
          print(RO)
+         counter_dos = 1
          continue
          
       """dont forget to update the line below"""
-      
+      #print(counter_dos)
       robot_position = bot.arm.get_joint_commands()
-
-      if hand_status > 0.5 and hand_status <= 1 and hand_life >= 4 and robot_position == [0.0, -0.45232809839358673, -0.4581438883057948, 0.9104719866994206, -4.679863967772227e-17] or number_of_hands == 0 and robot_position == [0.0, -0.45232809839358673, -0.4581438883057948, 0.9104719866994206, -4.679863967772227e-17]:
+      
+      
+     
+      if number_of_hands == 1 and hand_status > 0.5 and hand_status <= 1 and hand_life >= 2 and robot_position == [0.0, -0.45232809839358673, -0.4581438883057948, 0.9104719866994206, -4.679863967772227e-17] or palm_pointing < 0 and robot_position == [0.0, -0.45232809839358673, -0.4581438883057948, 0.9104719866994206, -4.679863967772227e-17]: #or number_of_hands == 0 and robot_position == [0.0, -0.45232809839358673, -0.4581438883057948, 0.9104719866994206, -4.679863967772227e-17]:
          
          if robot_position[0] <= 0 and robot_position[1] <= -1.7 and robot_position[2] >= 1.5 and robot_position[3] <= 0.8 and robot_position[4] <= 0.05:
             exit()
@@ -140,8 +149,9 @@ def main():
          time.sleep(1)
          bot.arm.set_single_joint_position("waist", 0)  
          bot.arm.go_to_sleep_pose()        
+         counter_dos = 0
                            
-      if hand_status < 0.5 and hand_life >= 4 and robot_position == [0.0, -0.45232809839358673, -0.4581438883057948, 0.9104719866994206, -4.679863967772227e-17]:
+      if number_of_hands == 1 and hand_status < 0.5 and hand_life >= 2 and robot_position == [0.0, -0.45232809839358673, -0.4581438883057948, 0.9104719866994206, -4.679863967772227e-17] and palm_pointing > 0:
       
          #if robot_position[0] == 0 and robot_position[1] <= -1.7 and robot_position[2] >= 1.5 and robot_position[3] >= 0.8 and robot_position[4] == 0:
             #exit()
@@ -153,9 +163,9 @@ def main():
          bot.arm.set_ee_cartesian_trajectory(x=-0.1, z=0.05)
          bot.arm.set_single_joint_position("waist", 0)  
          bot.arm.go_to_sleep_pose()
-      
+         counter_dos = 0
       time.sleep(1)             
-   
+      
 
 if __name__ == '__main__': 
     main()  
