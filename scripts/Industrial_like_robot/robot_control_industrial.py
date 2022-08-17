@@ -20,6 +20,11 @@ hand_status = 2.0
 
 hand_life = 0.0
 
+palm_direction = 0.0
+
+x_rate_of_change = 0.0
+y_rate_of_change = 0.0
+z_rate_of_change = 0.0
 
 def xyz(data):
 
@@ -48,6 +53,22 @@ def Leap_life_of_hand(data):
    global hand_life
    
    hand_life = data.data
+
+def xyz_rate_of_change(data):
+
+   global x_rate_of_change
+   global y_rate_of_change
+   global z_rate_of_change
+   
+   x_rate_of_change = data.x
+   y_rate_of_change = data.y
+   z_rate_of_change = data.z  
+
+def palm_normal_direction(data): 
+   
+   global palm_direction
+   
+   palm_direction = data.data
    
    
 def main():
@@ -67,6 +88,8 @@ def main():
       rospy.Subscriber("/hand_life_in_sensor", Float32, Leap_life_of_hand)
       rospy.Subscriber("/Robot_coordinates", Point, xyz)
       rospy.Subscriber("/hand_status", handstatus, hand)
+      rospy.Subscriber("/rate_of_change", Point, xyz_rate_of_change)
+      rospy.Subscriber("/palm_direction_for_robot", Float32, palm_normal_direction)
                      
       x_robot_control = x
       y_robot_control = y

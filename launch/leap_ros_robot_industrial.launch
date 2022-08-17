@@ -1,11 +1,14 @@
 <launch>
      
      
+     <node name="Leap_data" pkg="human_robot_interaction" type="Leap_server_industrial.py" />
+     <node name="XYZ_robot_coordinates" pkg="human_robot_interaction" type="LeapListener_industrial.py" />
+     <node name="Hand_data" pkg="human_robot_interaction" type="hand_status_industrial.py" />
+     <node name="Hand_life" pkg="human_robot_interaction" type="hand_life_industrial.py" />
+     <node name="palm_direction" pkg="human_robot_interaction" type="palm_direction.py" />
+     <node name="rate_of_change_for_robot" pkg="human_robot_interaction" type="hand_rate_of_change.py" />
      
-     <node name="Leap_data" pkg="human_robot_interaction" type="Leap_server_demonstrator.py" />
-     <node name="XYZ_robot_coordinates" pkg="human_robot_interaction" type="LeapListener_demonstrator.py" />
-     <node name="Hand_data" pkg="human_robot_interaction" type="hand_status_demonstrator.py" />
-     <node name="Hand_life" pkg="human_robot_interaction" type="hand_life_demonstrator.py" />
+     
      
      <arg name="robot_model"                       default=""/>
      <arg name="robot_name"                        default="$(arg robot_model)"/>
@@ -47,6 +50,6 @@
        <param name="load_configs"                    value="$(arg load_configs)"/>
      </node>
         
-     <node name="rx150_robot_manipulation" pkg="human_robot_interaction" type="robot_control_demonstrator.py" />
+     <node name="rx150_robot_manipulation" pkg="human_robot_interaction" type="robot_control_industrial.py" />
 
 </launch>

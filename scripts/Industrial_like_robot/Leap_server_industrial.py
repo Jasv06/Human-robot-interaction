@@ -38,16 +38,19 @@ def leap_data():
   pub_palm_position_stable = rospy.Publisher('hand_position_stable', Point, queue_size = 1)
   #pub_hand_velocity_right = rospy.Publisher('Hand_velocity', Point, queue_size = 10)
   pub_life_of_hand = rospy.Publisher('life_of_hand', Float32, queue_size = 1)
+  pub_hand_normal = rospy.Publisher('hand_normal', Float32, queue_size = 1)
+  pub_hand_rate_of_change = rospy.Publisher('hand_rate_of_change', Point, queue_size = 1)
   
   rate = rospy.Rate(50)
   
   while not rospy.is_shutdown():
   
      coordinates = Point() 
+     rate_of_change = Point()
     
      data, address = s.recvfrom(4096)
           
-     data = struct.unpack('<8f', data)      
+     data = struct.unpack('<12f', data)      
      
      number_of_hand_in_frame = data[0]
      
@@ -60,12 +63,20 @@ def leap_data():
      coordinates.z = data[5]*0.001
      
      life_of_hand_in_sensor = data[6]
-          
+     
+     palm_direction = data[7]
+     
+     rate_of_change.x = data[8]
+     rate_of_change.y = data[9]
+     rate_of_change.z = data[10]
+     
      pub_number_of_hands.publish(number_of_hand_in_frame)
      pub_hand_state.publish(strength)
      pub_hand_id.publish(hand_identifier)
      pub_palm_position_stable.publish(coordinates)
      pub_life_of_hand.publish(life_of_hand_in_sensor)
+     pub_hand_normal.publish(palm_direction)
+     pub_hand_rate_of_change.publish(rate_of_change)
      
      rate.sleep()
      
