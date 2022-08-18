@@ -134,7 +134,7 @@ def main():
       
       
      
-      if number_of_hands == 1 and hand_status > 0.5 and hand_status <= 1 and hand_life >= 2 and robot_position == [0.0, -0.45232809839358673, -0.4581438883057948, 0.9104719866994206, -4.679863967772227e-17] or palm_pointing < 0 and robot_position == [0.0, -0.45232809839358673, -0.4581438883057948, 0.9104719866994206, -4.679863967772227e-17]: #or number_of_hands == 0 and robot_position == [0.0, -0.45232809839358673, -0.4581438883057948, 0.9104719866994206, -4.679863967772227e-17]:
+      if number_of_hands == 1 and hand_status > 0.5 and hand_status <= 1 and hand_life >= 2 and robot_position == [0.0, -0.45232809839358673, -0.4581438883057948, 0.9104719866994206, -4.679863967772227e-17] or palm_pointing < 0 and robot_position == [0.0, -0.45232809839358673, -0.4581438883057948, 0.9104719866994206, -4.679863967772227e-17] and hand_life > 5: #or number_of_hands == 0 and robot_position == [0.0, -0.45232809839358673, -0.4581438883057948, 0.9104719866994206, -4.679863967772227e-17]:
          
          if robot_position[0] <= 0 and robot_position[1] <= -1.7 and robot_position[2] >= 1.5 and robot_position[3] <= 0.8 and robot_position[4] <= 0.05:
             exit()
@@ -150,6 +150,7 @@ def main():
          bot.arm.set_single_joint_position("waist", 0)  
          bot.arm.go_to_sleep_pose()        
          counter_dos = 0
+         time.sleep(1)
                            
       if number_of_hands == 1 and hand_status < 0.5 and hand_life >= 2 and robot_position == [0.0, -0.45232809839358673, -0.4581438883057948, 0.9104719866994206, -4.679863967772227e-17] and palm_pointing > 0:
       
@@ -164,6 +165,8 @@ def main():
          bot.arm.set_single_joint_position("waist", 0)  
          bot.arm.go_to_sleep_pose()
          counter_dos = 0
+         time.sleep(1)
+         
       time.sleep(1)             
       
 
