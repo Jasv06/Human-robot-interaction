@@ -60,12 +60,13 @@ class LeapMotionListener(Leap.Listener):
            UDPSocket.sendto(info ,AddressPort)
            time.sleep(0.05)
         self.id = LeapMotionListener.ctr
-        
+        x_direction = 0
         
         if handnummer > 0:
             print "Hands: %d" % (handnummer)
                      
         for hand in frame.hands:
+            
             handType = "Left Hand " if hand.is_left else "Right Hand "
             print handType + "Hand ID: " + str(hand.id) + " Palm Position: " + str(hand.palm_position)
             
@@ -74,10 +75,24 @@ class LeapMotionListener(Leap.Listener):
             print("mano abierta o cerrada: %f" % hand.grab_strength)
             
             hand_direction = hand.direction
-            
-            print(hand.palm_normal)
+            print(hand.basis)
+            #print(hand.palm_normal)
             print(hand.palm_velocity)
+            basis = hand.basis
+            x_basis = basis.x_basis
+            y_basis = basis.y_basis
+            z_basis = basis.z_basis
             
+            if hand.is_left:
+            
+            	x_direction = x_basis[0]
+            	print(x_direction)
+            	
+            elif hand.is_right:
+            
+            	x_direction = x_basis[0]*(-1)
+            	print(x_direction)
+            	
             strength = hand.grab_strength
             hand_identifier = hand.id
             pitch = hand.direction.pitch
@@ -86,7 +101,7 @@ class LeapMotionListener(Leap.Listener):
             filtered_hand = hand.stabilized_palm_position
             hand_speed  = hand.palm_velocity
                         
-            bytes = [len(frame.hands),strength,hand_identifier,filtered_hand[0],filtered_hand[1],filtered_hand[2],life_time_of_hand,hand.palm_normal[1],hand_speed[0],hand_speed[1],hand_speed[2],1]
+            bytes = [len(frame.hands),strength,hand_identifier,filtered_hand[0],filtered_hand[1],filtered_hand[2],life_time_of_hand,x_direction,hand_speed[0],hand_speed[1],hand_speed[2],1]
             
             if handnummer == 1 and self.id <= life_time_of_hand and life_time_of_hand <= (self.id + 0.04):
             #if handnummer == 1 and life_time_of_hand >= 4 and life_time_of_hand < 4 + 0.01:

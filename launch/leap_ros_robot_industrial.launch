@@ -50,6 +50,6 @@
        <param name="load_configs"                    value="$(arg load_configs)"/>
      </node>
         
-     <node name="rx150_robot_manipulation" pkg="human_robot_interaction" type="robot_control_industrial.py" />
+     <node name="rx150_robot_manipulation" pkg="human_robot_interaction" type="robot_control_industrial_2.py" />
 
 </launch>

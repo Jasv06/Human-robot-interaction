@@ -10,7 +10,7 @@ from geometry_msgs.msg import Point
 from std_msgs.msg import Int32 
 from human_robot_interaction.msg import *
 
-"""Script with only the ability to detect where is your hand pointing towards"""
+"""Script with the ability to detect if your hand is upsidedown and if your hand is moving and it will drop object till your hand has stopped moving"""
 
 x = 0.3
 y = 0.0
@@ -134,9 +134,8 @@ def main():
       #print(counter_dos)
       robot_position = bot.arm.get_joint_commands()
       
-      
      
-      if number_of_hands == 1 and hand_status > 0.5 and hand_status <= 1 and hand_life >= 5 and robot_position == [0.0, -0.45232809839358673, -0.4581438883057948, 0.9104719866994206, -4.679863967772227e-17] or palm_pointing < 0 and robot_position == [0.0, -0.45232809839358673, -0.4581438883057948, 0.9104719866994206, -4.679863967772227e-17] and hand_life > 5: #or number_of_hands == 0 and robot_position == [0.0, -0.45232809839358673, -0.4581438883057948, 0.9104719866994206, -4.679863967772227e-17]:
+      if number_of_hands == 1 and hand_status >= 0.8 and hand_status <= 1 and hand_life >= 5 and robot_position == [0.0, -0.45232809839358673, -0.4581438883057948, 0.9104719866994206, -4.679863967772227e-17] or palm_pointing < 0 and robot_position == [0.0, -0.45232809839358673, -0.4581438883057948, 0.9104719866994206, -4.679863967772227e-17] and hand_life > 5: #or number_of_hands == 0 and robot_position == [0.0, -0.45232809839358673, -0.4581438883057948, 0.9104719866994206, -4.679863967772227e-17]:
          
          if robot_position[0] <= 0 and robot_position[1] <= -1.7 and robot_position[2] >= 1.5 and robot_position[3] <= 0.8 and robot_position[4] <= 0.05:
             exit()
@@ -154,20 +153,29 @@ def main():
          counter_dos = 0
          time.sleep(1)
                            
-      if number_of_hands == 1 and hand_status < 0.5 and hand_life >= 3 and robot_position == [0.0, -0.45232809839358673, -0.4581438883057948, 0.9104719866994206, -4.679863967772227e-17] and palm_pointing > 0:
-      
+      if number_of_hands == 1 and hand_status < 0.8 and hand_life >= 2 and robot_position == [0.0, -0.45232809839358673, -0.4581438883057948, 0.9104719866994206, -4.679863967772227e-17] and palm_pointing > 0:
+         
+         #if robot_position[0] <= 0 and robot_position[1] <= -1.7 and robot_position[2] >= 1.5 and robot_position[3] >= 0.8 and robot_position[4] <= 0.05:
+         #	print("wrong loop!!")
+         #	continue  
+         
          #if robot_position[0] == 0 and robot_position[1] <= -1.7 and robot_position[2] >= 1.5 and robot_position[3] >= 0.8 and robot_position[4] == 0:
             #exit()
-            
-         bot.arm.set_ee_pose_components(x=x_robot_control,y=y_robot_control,z=z_robot_control)       
-         bot.gripper.open()
-         time.sleep(1)
-         #bot.arm.go_to_home_pose()
-         bot.arm.set_ee_cartesian_trajectory(x=-0.1, z=0.05)
-         bot.arm.set_single_joint_position("waist", 0)  
-         bot.arm.go_to_sleep_pose()
-         counter_dos = 0
-         time.sleep(1)
+         if x_rate < 10 and x_rate >-10 and y_rate < 10 and y_rate > -10 and z_rate < 10 and z_rate > -10 and robot_position == [0.0, -0.45232809839358673, -0.4581438883057948, 0.9104719866994206, -4.679863967772227e-17]:
+           
+         	bot.arm.set_ee_pose_components(x=x_robot_control,y=y_robot_control,z=z_robot_control)       
+         	bot.gripper.open()
+         	time.sleep(1)
+         	#bot.arm.go_to_home_pose()
+         	bot.arm.set_ee_cartesian_trajectory(x=-0.1, z=0.05)
+         	bot.arm.set_single_joint_position("waist", 0)  
+         	bot.arm.go_to_sleep_pose()
+         	counter_dos = 0
+         	time.sleep(1)
+         else: 
+         	
+         	#print("Please stop moving your hand!!")
+         	continue 
          
       time.sleep(1)             
       
