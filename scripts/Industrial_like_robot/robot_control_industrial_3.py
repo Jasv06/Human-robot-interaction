@@ -164,7 +164,7 @@ def main():
                            
 		if number_of_hands == 1 and hand_status < 0.8 and hand_life >= 0 and palm_pointing > 0 and emergencia == 1: #and robot_position == [0.0, -0.45232809839358673, -0.4581438883057948, 0.9104719866994206, -4.679863967772227e-17]:
  
-			bot.arm.set_ee_pose_components(x=x_robot_control,y=y_robot_control, z = (z_robot_control+0.07)) 
+			bot.arm.set_ee_pose_components(x=x_robot_control,y=y_robot_control, z = (z_robot_control+0.05)) 
  			
 			if x_rate < 5 and x_rate >-5 and y_rate < 5 and y_rate > -5 and z_rate < 5 and z_rate > -5:
 			
@@ -172,7 +172,8 @@ def main():
 				bot.gripper.open()
 				time.sleep(0.5)
 				#bot.arm.go_to_home_pose()
-				bot.arm.set_ee_cartesian_trajectory(x=-0.1, z=0.05)
+				
+				bot.arm.set_ee_cartesian_trajectory(x=-0.08, z=0.02)
 				bot.arm.set_single_joint_position("waist", 0)  
 				bot.arm.go_to_sleep_pose()
 				counter_dos = 0
@@ -187,7 +188,7 @@ def main():
 			
 			continue 
 			         
-		time.sleep(1)             
+		time.sleep(0.5)             
       
 
 if __name__ == '__main__': 

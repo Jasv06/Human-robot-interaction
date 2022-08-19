@@ -164,9 +164,9 @@ def main():
 				bot.arm.set_ee_pose_components(x=x_robot_control,y=y_robot_control,z=z_robot_control)       
 				bot.gripper.open()
 				time.sleep(1)
-				#bot.arm.go_to_home_pose()
-				bot.arm.set_ee_cartesian_trajectory(x=-0.1, z=0.05)
-				bot.arm.set_single_joint_position("waist", 0)  
+				#bot.arm.go_to_home_pose() 
+				bot.arm.set_ee_cartesian_trajectory(x=-0.08, z=0.02)
+				bot.arm.set_single_joint_position("waist", 0) 
 				bot.arm.go_to_sleep_pose()
 				counter_dos = 0
 				emergencia = 0 
@@ -180,7 +180,7 @@ def main():
 			
 			continue 
 			         
-		time.sleep(1)             
+		time.sleep(0.5)             
       
 
 if __name__ == '__main__': 

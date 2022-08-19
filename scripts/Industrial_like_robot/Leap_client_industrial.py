@@ -77,7 +77,7 @@ class LeapMotionListener(Leap.Listener):
             hand_direction = hand.direction
             normal = hand.palm_normal
             #print(hand.palm_normal)
-            #print(hand.palm_velocity)
+            print(hand.palm_velocity)
             basis = hand.basis
             x_basis = basis.x_basis
             y_basis = basis.y_basis
