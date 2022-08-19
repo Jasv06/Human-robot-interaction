@@ -70,7 +70,7 @@ def main():
          z_rob_stable = z_rob_stable + 0.06
              
      if z_rob_stable > 0.2:
-         z_rob_stable = z_rob_stable + 0.04
+         z_rob_stable = z_rob_stable + 0.03
      
      coordenadas.x = x_rob_stable
      coordenadas.y = y_rob_stable
