@@ -89,8 +89,6 @@ def main():
 	
 	emergencia = 0
 	
-	#gripper_position = bot.arm.get_single_joint_command("left_finger")
-	#print(gripper_position)
 	
 	while not rospy.is_shutdown():
       
@@ -162,11 +160,11 @@ def main():
 			emergencia = 0
 			time.sleep(1)
                            
-		if number_of_hands == 1 and hand_status < 0.8 and hand_life >= 0 and palm_pointing > 0 and emergencia == 1: #and robot_position == [0.0, -0.45232809839358673, -0.4581438883057948, 0.9104719866994206, -4.679863967772227e-17]:
+		if number_of_hands == 1 and hand_status < 0.8 and hand_life >= 0.5 and palm_pointing > 0 and emergencia == 1: #and robot_position == [0.0, -0.45232809839358673, -0.4581438883057948, 0.9104719866994206, -4.679863967772227e-17]:
  
 			bot.arm.set_ee_pose_components(x=x_robot_control,y=y_robot_control, z = (z_robot_control+0.05)) 
  			
-			if x_rate < 5 and x_rate >-5 and y_rate < 5 and y_rate > -5 and z_rate < 5 and z_rate > -5:
+			if x_rate < 5 and x_rate >-5 and y_rate < 5 and y_rate > -5 and z_rate < 5 and z_rate > -5 and hand_life > 4:
 			
 				bot.arm.set_ee_pose_components(x=x_robot_control,y=y_robot_control,z=z_robot_control)       
 				bot.gripper.open()
