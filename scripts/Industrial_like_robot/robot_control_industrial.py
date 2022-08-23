@@ -161,13 +161,11 @@ def main():
  
 			bot.arm.set_ee_pose_components(x=x_robot_control,y=y_robot_control, z = (z_robot_control+0.035)) 
  			
-			if x_rate < 3 and x_rate > -3 and y_rate < 3 and y_rate > -3 and z_rate < 3 and z_rate > -3 and hand_life > 6:
+			if x_rate < 1 and x_rate > -1 and y_rate < 1 and y_rate > -1 and z_rate < 1 and z_rate > -1 and hand_life > 6:
 			
 				bot.arm.set_ee_pose_components(x=x_robot_control,y=y_robot_control,z=z_robot_control)       
 				bot.gripper.open()
 				time.sleep(0.5)
-				#bot.arm.go_to_home_pose()
-				
 				bot.arm.set_ee_cartesian_trajectory(x=-0.08, z=0.02)
 				bot.arm.set_single_joint_position("waist", 0)  
 				bot.arm.go_to_sleep_pose()

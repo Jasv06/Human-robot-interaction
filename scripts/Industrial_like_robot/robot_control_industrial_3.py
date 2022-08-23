@@ -89,6 +89,9 @@ def main():
 	
 	emergencia = 0
 	
+	counter = 0
+	
+	drop = 0
 	
 	while not rospy.is_shutdown():
       
@@ -113,64 +116,192 @@ def main():
 		palm_pointing = palm_direction
       
 		if number_of_hands == 1 and counter_uno == counter_dos and hand_life >= 0.5: 
-         
-			bot.arm.set_ee_pose_components(x=0.18,z=0.2)
-			bot.gripper.open()
-			time.sleep(0.5)
-			#print(gripper_position)
-			bot.arm.set_single_joint_position("waist", -np.pi/2.0)
-			bot.arm.set_ee_cartesian_trajectory(x = 0.15,z=0.02)    
-			bot.arm.set_ee_cartesian_trajectory(x=0.08,z=-0.12)
-			bot.gripper.close()
-			time.sleep(0.5)
-			bot.arm.set_ee_cartesian_trajectory(x=-0.08,z=0.12)
-			time.sleep(0.5)
-			bot.arm.set_ee_cartesian_trajectory(x=-0.1, z=0.16)
-			time.sleep(0.5)
-			bot.arm.set_single_joint_position("waist", 0)
-			time.sleep(0.5)
-			RO = bot.arm.get_joint_commands()
-			emergencia = 1
-			print(RO)
-			#print(gripper_position)
-			counter_dos = 1
-			continue
-         
+			
+			if counter == 0:
+				bot.arm.set_ee_pose_components(x=0.18,z=0.2)
+				bot.gripper.open()
+				time.sleep(0.5)
+				bot.arm.set_single_joint_position("waist", -np.pi/2.0)
+				bot.arm.set_ee_cartesian_trajectory(x = 0.15,z=0.02)    
+				bot.arm.set_ee_cartesian_trajectory(x=0.08,z=-0.14)
+				bot.gripper.close()
+				time.sleep(0.5)
+				bot.arm.set_ee_cartesian_trajectory(x=-0.08,z=0.14)
+				time.sleep(0.5)
+				bot.arm.set_ee_cartesian_trajectory(x=-0.1, z=0.16)
+				time.sleep(0.5)
+				bot.arm.set_single_joint_position("waist", 0)
+				time.sleep(0.5)
+				emergencia = 1
+				counter_dos = 1
+				counter = 1
+				drop = 0
+				RO = bot.arm.get_joint_commands()
+				print(RO)
+				continue
+				
+			elif counter == 1:
+				bot.arm.set_ee_pose_components(x=0.18,z=0.2)
+				bot.gripper.open()
+				time.sleep(0.5)
+				bot.arm.set_single_joint_position("waist", -np.pi/3)
+				time.sleep(0.5)
+				bot.arm.set_ee_cartesian_trajectory(x = 0.22,z=0.017) 
+				bot.arm.set_single_joint_position("wrist_rotate",position=0.44)
+				bot.arm.set_single_joint_position("wrist_angle",position=1.3)
+				bot.gripper.close()
+				bot.arm.set_single_joint_position("wrist_rotate",position=0)
+				bot.arm.set_single_joint_position("wrist_angle",position=0)
+				bot.arm.set_ee_cartesian_trajectory(x=-0.15, z=0.18)
+				bot.arm.set_single_joint_position("waist", 0)
+				emergencia = 1
+				counter_dos = 1
+				counter = 2
+				drop = 1
+				ROB = bot.arm.get_joint_commands()
+				print(ROB)
+				continue 
+				
+			elif counter == 2:
+				bot.arm.set_ee_pose_components(x=0.18,z=0.2)
+				bot.gripper.open()
+				time.sleep(0.5)
+				bot.arm.set_single_joint_position("waist", -np.pi/3.25)
+				time.sleep(0.5)
+				bot.arm.set_ee_cartesian_trajectory(x = 0.15,z=0.02)    
+				time.sleep(0.5)
+				bot.arm.set_ee_cartesian_trajectory(x=0.049,z=-0.14)
+				bot.gripper.close()
+				time.sleep(0.5)
+				bot.arm.set_ee_cartesian_trajectory(x=-0.049,z=0.14)
+				time.sleep(0.5)
+				bot.arm.set_ee_cartesian_trajectory(x=-0.1, z=0.16)
+				time.sleep(0.5)
+				bot.arm.set_single_joint_position("waist", 0)
+				time.sleep(0.5)
+				emergencia = 1
+				counter_dos = 1
+				counter = 3
+				drop = 2
+				ROBO = bot.arm.get_joint_commands()
+				print(ROBO)
+				continue
+				
+			elif counter == 3:
+				bot.arm.set_ee_pose_components(x=0.18,z=0.2)
+				bot.gripper.open()
+				time.sleep(0.5)
+				bot.arm.set_single_joint_position("waist", -np.pi/2.5)
+				time.sleep(0.5)
+				bot.arm.set_ee_cartesian_trajectory(x = 0.15,z=0.02)    
+				time.sleep(0.5)
+				bot.arm.set_ee_cartesian_trajectory(x=0.049,z=-0.14)
+				bot.gripper.close()
+				time.sleep(0.5)
+				bot.arm.set_ee_cartesian_trajectory(x=-0.049,z=0.14)
+				time.sleep(0.5)
+				bot.arm.set_ee_cartesian_trajectory(x=-0.1, z=0.16)
+				time.sleep(0.5)
+				bot.arm.set_single_joint_position("waist", 0)
+				time.sleep(0.5)
+				emergencia = 1
+				counter_dos = 1
+				counter = 0
+				drop = 3
+				ROBOT = bot.arm.get_joint_commands()
+				print(ROBOT)
+				continue 
+			
+
 		"""dont forget to update the line below"""
-		#print(counter_dos)
 		robot_position = bot.arm.get_joint_commands()
 		
      
-		if number_of_hands == 1 and hand_status >= 0.8 and hand_status <= 1 and hand_life >= 5 and robot_position == [0.0, -0.45232809839358673, -0.4581438883057948, 0.9104719866994206, -4.679863967772227e-17] or palm_pointing < 0 and robot_position == [0.0, -0.45232809839358673, -0.4581438883057948, 0.9104719866994206, -4.679863967772227e-17] and hand_life > 5: 
+		if number_of_hands == 1 and hand_status >= 0.8 and hand_status <= 1 and hand_life >= 5 and emergencia == 1 or palm_pointing < 0 and emergencia == 1 and hand_life > 5: 
          
 			if robot_position[0] <= 0 and robot_position[1] <= -1.7 and robot_position[2] >= 1.5 and robot_position[3] <= 0.9 and robot_position[4] <= 0.05:
 				exit()
-         
-			bot.arm.set_single_joint_position("waist", -np.pi/2.0)
-			bot.arm.set_ee_cartesian_trajectory(x=0.1, z=-0.16)    
-			bot.arm.set_ee_cartesian_trajectory(x=0.08,z=-0.12)
-			bot.gripper.open()
-			time.sleep(1)
-			bot.arm.set_ee_cartesian_trajectory(x=-0.08,z=0.12)
-			bot.arm.set_ee_cartesian_trajectory(x=-0.1, z=0.16)
-			time.sleep(1)
-			bot.arm.set_single_joint_position("waist", 0)  
-			bot.arm.go_to_sleep_pose()        
-			counter_dos = 0
-			emergencia = 0
-			time.sleep(1)
-                           
-		if number_of_hands == 1 and hand_status < 0.8 and hand_life >= 0.5 and palm_pointing > 0 and emergencia == 1: #and robot_position == [0.0, -0.45232809839358673, -0.4581438883057948, 0.9104719866994206, -4.679863967772227e-17]:
+			
+			if drop == 0 and robot_position == [0.0, -0.452328098393586, -0.45814388830579644, 0.9104719866994214, -4.5103991595197685e-17]:			
+				bot.arm.set_single_joint_position("waist", -np.pi/2.0)
+				bot.arm.set_ee_cartesian_trajectory(x=0.1, z=-0.16)    
+				bot.arm.set_ee_cartesian_trajectory(x=0.08,z=-0.14)
+				bot.gripper.open()
+				time.sleep(1)
+				bot.arm.set_ee_cartesian_trajectory(x=-0.08,z=0.14)
+				bot.arm.set_ee_cartesian_trajectory(x=-0.1, z=0.16)
+				time.sleep(1)
+				bot.arm.set_single_joint_position("waist", 0)  
+				bot.arm.go_to_sleep_pose()        
+				counter_dos = 0
+				emergencia = 0
+				time.sleep(1)
+				
+			elif drop == 1 and robot_position == [0.0, -0.1431028024781285, -0.9939358192110259, 1.245021987624909, 1.0457262282043245e-16]:
+				bot.arm.set_ee_pose_components(x=0.18,z=0.2)
+				bot.arm.set_single_joint_position("waist", -np.pi/3)
+				time.sleep(0.5)
+				bot.arm.set_ee_cartesian_trajectory(x = 0.22,z=0.017) 
+				bot.arm.set_single_joint_position("wrist_rotate",position=0.44)
+				bot.arm.set_single_joint_position("wrist_angle",position=1.3)
+				bot.gripper.open()
+				bot.arm.set_single_joint_position("wrist_angle",position=0)
+				bot.arm.set_single_joint_position("wrist_rotate",position=0)
+				bot.arm.set_ee_cartesian_trajectory(x=-0.15, z=0.18)
+				bot.arm.set_single_joint_position("waist", 0)
+				bot.arm.go_to_sleep_pose()
+				counter_dos = 0
+				emergencia = 0
+				time.sleep(1)
+				
+			elif drop == 2 and robot_position == [0.0, -0.45232809839358706, -0.4581438883057943, 0.91047198669942, -2.47275898276998e-17]:
+				bot.arm.set_ee_pose_components(x=0.18,z=0.2)
+				bot.arm.set_single_joint_position("waist", -np.pi/2.5)
+				time.sleep(0.5)
+				bot.arm.set_ee_cartesian_trajectory(x = 0.15,z=0.02)    
+				time.sleep(0.5)
+				bot.arm.set_ee_cartesian_trajectory(x=0.049,z=-0.14)
+				bot.gripper.open()
+				bot.arm.set_ee_cartesian_trajectory(x=-0.049,z=0.14)
+				time.sleep(0.5)
+				bot.arm.set_ee_cartesian_trajectory(x=-0.1, z=0.16)
+				time.sleep(0.5)
+				bot.arm.set_single_joint_position("waist", 0)
+				bot.arm.go_to_sleep_pose()
+				counter_dos = 0
+				emergencia = 0
+				time.sleep(1)
+				
+			elif drop == 3 and robot_position == [0.0, -0.45232809839358756, -0.45814388830579406, 0.9104719866994205, -1.90717601420712e-17]:
+				bot.arm.set_ee_pose_components(x=0.18,z=0.2)
+				bot.arm.set_single_joint_position("waist", -np.pi/2.5)
+				time.sleep(0.5)
+				bot.arm.set_ee_cartesian_trajectory(x = 0.15,z=0.02)    
+				time.sleep(0.5)
+				bot.arm.set_ee_cartesian_trajectory(x=0.049,z=-0.14)
+				bot.gripper.open()
+				bot.arm.set_ee_cartesian_trajectory(x=-0.049,z=0.14)
+				time.sleep(0.5)
+				bot.arm.set_ee_cartesian_trajectory(x=-0.1, z=0.16)
+				time.sleep(0.5)
+				bot.arm.set_single_joint_position("waist", 0)
+				bot.arm.go_to_sleep_pose()
+				counter_dos = 0 
+				emergencia = 0 
+				time.sleep(1)
+				
+			else: 
+				continue 				
+				
+		if number_of_hands == 1 and hand_status < 0.8 and hand_life >= 0.5 and palm_pointing > 0 and emergencia == 1:
  
-			bot.arm.set_ee_pose_components(x=x_robot_control,y=y_robot_control, z = (z_robot_control+0.05)) 
+			bot.arm.set_ee_pose_components(x=x_robot_control,y=y_robot_control, z = (z_robot_control+0.035)) 
  			
-			if x_rate < 5 and x_rate >-5 and y_rate < 5 and y_rate > -5 and z_rate < 5 and z_rate > -5 and hand_life > 4:
+			if x_rate < 1.5 and x_rate > -1.5 and y_rate < 1.5 and y_rate > -1.5 and z_rate < 1.5 and z_rate > -1.5 and hand_life > 6:
 			
 				bot.arm.set_ee_pose_components(x=x_robot_control,y=y_robot_control,z=z_robot_control)       
 				bot.gripper.open()
-				time.sleep(0.5)
-				#bot.arm.go_to_home_pose()
-				
+				time.sleep(0.5)				
 				bot.arm.set_ee_cartesian_trajectory(x=-0.08, z=0.02)
 				bot.arm.set_single_joint_position("waist", 0)  
 				bot.arm.go_to_sleep_pose()
@@ -179,7 +310,6 @@ def main():
 				time.sleep(1)
 			else: 
          	
-         			#print("Please stop moving your hand!!")
 				continue
  
 		else: 
@@ -190,4 +320,4 @@ def main():
       
 
 if __name__ == '__main__': 
-    main()  
+    main()   
