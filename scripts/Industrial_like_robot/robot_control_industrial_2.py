@@ -117,7 +117,9 @@ def main():
 			bot.gripper.open()
 			time.sleep(0.5)
 			bot.arm.set_single_joint_position("waist", -np.pi/2.0)
-			bot.arm.set_ee_cartesian_trajectory(x = 0.15,z=0.02)    
+			time.sleep(0.5)
+			bot.arm.set_ee_cartesian_trajectory(x = 0.15,z=0.02)
+			time.sleep(0.5)    
 			bot.arm.set_ee_cartesian_trajectory(x=0.08,z=-0.12)
 			bot.gripper.close()
 			time.sleep(0.5)
@@ -144,11 +146,14 @@ def main():
 				exit()
          
 			bot.arm.set_single_joint_position("waist", -np.pi/2.0)
-			bot.arm.set_ee_cartesian_trajectory(x=0.1, z=-0.16)    
+			time.sleep(0.5)
+			bot.arm.set_ee_cartesian_trajectory(x=0.1, z=-0.16)
+			time.sleep(0.5)    
 			bot.arm.set_ee_cartesian_trajectory(x=0.08,z=-0.12)
 			bot.gripper.open()
 			time.sleep(1)
 			bot.arm.set_ee_cartesian_trajectory(x=-0.08,z=0.12)
+			time.sleep(0.5)
 			bot.arm.set_ee_cartesian_trajectory(x=-0.1, z=0.16)
 			time.sleep(1)
 			bot.arm.set_single_joint_position("waist", 0)  
@@ -159,12 +164,11 @@ def main():
                            
 		if number_of_hands == 1 and hand_status < 0.8 and hand_life >= 2 and robot_position == [0.0, -0.45232809839358673, -0.4581438883057948, 0.9104719866994206, -4.679863967772227e-17] and palm_pointing > 0 and emergencia == 1:
          
-			if x_rate < 10 and x_rate >-10 and y_rate < 10 and y_rate > -10 and z_rate < 10 and z_rate > -10 and robot_position == [0.0, -0.45232809839358673, -0.4581438883057948, 0.9104719866994206, -4.679863967772227e-17]:
+			if x_rate < 5 and x_rate >-5 and y_rate < 5 and y_rate > -5 and z_rate < 5 and z_rate > -5 and robot_position == [0.0, -0.45232809839358673, -0.4581438883057948, 0.9104719866994206, -4.679863967772227e-17]:
 				
 				bot.arm.set_ee_pose_components(x=x_robot_control,y=y_robot_control,z=z_robot_control)       
 				bot.gripper.open()
-				time.sleep(1)
-				#bot.arm.go_to_home_pose() 
+				time.sleep(1) 
 				bot.arm.set_ee_cartesian_trajectory(x=-0.08, z=0.02)
 				bot.arm.set_single_joint_position("waist", 0) 
 				bot.arm.go_to_sleep_pose()
