@@ -217,7 +217,7 @@ def main():
 		robot_position = bot.arm.get_joint_commands()
 		
      
-		if number_of_hands == 1 and hand_status >= 0.8 and hand_status <= 1 and hand_life >= 5 and emergencia == 1 or palm_pointing < 0 and emergencia == 1 and hand_life > 5: 
+		if number_of_hands == 1 and hand_status >= 0.8 and hand_status <= 1 and hand_life >= 5 and emergencia == 1: #or palm_pointing < 0 and emergencia == 1 and hand_life > 5: 
          
 			if robot_position[0] <= 0 and robot_position[1] <= -1.7 and robot_position[2] >= 1.5 and robot_position[3] <= 0.9 and robot_position[4] <= 0.05:
 				exit()
@@ -293,7 +293,7 @@ def main():
 			else: 
 				continue 				
 				
-		if number_of_hands == 1 and hand_status < 0.8 and hand_life >= 0.5 and palm_pointing > 0 and emergencia == 1:
+		if number_of_hands == 1 and hand_status < 0.8 and hand_life >= 0.5 and emergencia == 1:#and palm_pointing > 0
  
 			bot.arm.set_ee_pose_components(x=x_robot_control,y=y_robot_control, z = (z_robot_control+0.035)) 
  			

@@ -92,7 +92,10 @@ class LeapMotionListener(Leap.Listener):
             
             #	normal = hand.palm_normal*(-1)
             	#print(x_direction)
-            print("hand normal: %f" % normal[1])	
+            #print("hand normal x: %f" % normal[0])	
+            print("hand normal y: %f" % normal[1])
+            #print("hand normal z: %f" % normal[2])
+            print("confidence level: %f" % hand.confidence)
             strength = hand.grab_strength
             hand_identifier = hand.id
             pitch = hand.direction.pitch
