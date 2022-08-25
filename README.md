@@ -5,14 +5,26 @@ Human Robot Interaction(HRI) is the field of studies dedicated to the understand
 
 Consequently, this project aims to develop different concepts for the cooperation between an industrial-like robot and a human operator. For this purpose, the sensor systems LeapMotion and Astra are used to determine the motion of the human operator. The motion is provided directly in a skeleton model. Thus the robot(ReactorX-150) acquires the ability to interact in the smoothest possible way.
 
-## Requierments
-You should have [Ubuntu 20.04](https://releases.ubuntu.com/20.04/), [ROS Noetic](http://wiki.ros.org/noetic), [Leap Motion SDK](https://developer.leapmotion.com/tracking-software-download), [Python 2](https://www.python.org/downloads/release/python-272/), and [Python 3](https://www.python.org/downloads/) installed on your device.
-## Features
+## Requierments and supported platforms
+### Supported platforms/releases:
+
+|Platform|ROS Release|
+|-|------|
+|[Ubuntu 20.04](https://releases.ubuntu.com/20.04/)|[ROS Noetic](https://wiki.ros.org/noetic/Installation/Ubuntu)|
+
+### Requirements: 
+
+You should have the [Leap Motion SDK](https://developer.leapmotion.com/tracking-software-download), [Python 2](https://www.python.org/downloads/release/python-272) and [Python 3](https://www.python.org/downloads/) installed on your device. 
 
 ## Documentation and Enviornment setup
-The documentation of this repository can be found [here](). This documentation includes a description of the sensors and the robot arm which were used to develop and test the industrial-like interaction.
+For guidance on installation, development, environmental setup, and troubleshooting, see our [documentation](). This documentation includes a description of the sensors and the robot arm which were used to develop and test the industrial-like interaction.
 
-For more information on how to perfom the correct installation of the requierments mentioned before and the correct environemtal setup please refer to [Chapter 5 subsection 1]() from the documentation.
+## Current features
+- [Pick up and delivery of an object/piece while hand is being hold inside the sensor working area](/scripts/)
+- Pick up and delivery of an object/piece with the posibility of switching hands
+- Pick up and deliver of differnt pieces placed in different locations
+- Determinations of the hands status
+
 ## Installation
 **1.** Go to the source folder of your catkin workspace.
 ```bash 
