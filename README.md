@@ -29,7 +29,11 @@ For guidance on installation, development, environmental setup, and troubleshoot
 **1.** Go to the source folder of your catkin workspace.
 ```bash 
 cd ~/catkin_ws/src
-@@ -38,8 +20,3 @@ catkin_make
+git clone https://github.com/Jasv06/human_robot_interaction.git
+cd ~/catkin_ws
+catkin_make
+```
+**2.** Source your current catkin workspace.
 ```bash 
 source ~/catkin_ws/devel/setup.bash
 ```
