@@ -330,7 +330,7 @@ def main():
 				emergencia = 0
 				time.sleep(1)
 			else: 
-         			x_robot_control_old = x_robot_control
+				x_robot_control_old = x_robot_control
 				y_robot_control_old = y_robot_control
 				z_robot_control_old = z_robot_control
 				continue
