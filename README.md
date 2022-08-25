@@ -1,5 +1,7 @@
-# Human Robot Interaction
+# Human Robot Interaction(HRI)
 ![](Images/IMG_6493.JPG)
+## What is HRI? 
+
 ## Requierments
 You should have [Ubuntu 20.04](https://releases.ubuntu.com/20.04/), [ROS Noetic](http://wiki.ros.org/noetic), [Leap Motion SDK](https://developer.leapmotion.com/tracking-software-download), [Python 2](https://www.python.org/downloads/release/python-272/), and [Python 3](https://www.python.org/downloads/) installed on your device.
 ## Features
