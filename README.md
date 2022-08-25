@@ -20,7 +20,7 @@ You should have the [Leap Motion SDK](https://developer.leapmotion.com/tracking-
 For guidance on installation, development, environmental setup, and troubleshooting, see our [documentation](). This documentation includes a description of the sensors and the robot arm which were used to develop and test the industrial-like interaction.
 
 ## Current features
-- [Pick up and delivery of an object/piece while hand is being hold inside the sensor working area](/scripts/)
+- [Pick up and delivery of an object/piece while hand is being hold inside the sensor working area](/scripts/demonstrator_hold_hand)
 - Pick up and delivery of an object/piece with the posibility of switching hands
 - Pick up and deliver of differnt pieces placed in different locations
 - Determinations of the hands status
