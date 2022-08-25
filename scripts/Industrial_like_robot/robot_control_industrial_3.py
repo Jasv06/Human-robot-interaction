@@ -93,6 +93,10 @@ def main():
 	
 	drop = 0
 	
+	x_robot_control_old = 0
+	y_robot_control_old = 0
+	z_robot_control_old = 0
+	
 	while not rospy.is_shutdown():
       
 		rospy.Subscriber("/hand_life_in_sensor", Float32, Leap_life_of_hand)
@@ -314,7 +318,7 @@ def main():
  
 			bot.arm.set_ee_pose_components(x=x_robot_control,y=y_robot_control, z = (z_robot_control+0.035)) 
  			
-			if x_rate < 1.5 and x_rate > -1.5 and y_rate < 1.5 and y_rate > -1.5 and z_rate < 1.5 and z_rate > -1.5 and hand_life > 6:
+			if x_rate <= 5 and x_rate >= -5 and y_rate <= 5 and y_rate >= -5 and z_rate <= 5 and z_rate >= -5 and hand_life > 3 and x_robot_control <= (x_robot_control_old + 0.02) and x_robot_control >= (x_robot_control_old - 0.02) and y_robot_control <= (y_robot_control_old + 0.02) and y_robot_control >= (y_robot_control_old - 0.02)  and z_robot_control <= (z_robot_control_old + 0.02) and z_robot_control >= (z_robot_control_old - 0.02):
 			
 				bot.arm.set_ee_pose_components(x=x_robot_control,y=y_robot_control,z=z_robot_control)       
 				bot.gripper.open()
@@ -326,7 +330,9 @@ def main():
 				emergencia = 0
 				time.sleep(1)
 			else: 
-         	
+         			x_robot_control_old = x_robot_control
+				y_robot_control_old = y_robot_control
+				z_robot_control_old = z_robot_control
 				continue
  
 		else: 

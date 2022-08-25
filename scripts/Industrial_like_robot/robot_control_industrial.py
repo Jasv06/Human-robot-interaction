@@ -89,6 +89,10 @@ def main():
 	
 	emergencia = 0
 	
+	x_robot_control_old = 0
+	y_robot_control_old = 0
+	z_robot_control_old = 0
+	
 	while not rospy.is_shutdown():
       
 		rospy.Subscriber("/hand_life_in_sensor", Float32, Leap_life_of_hand)
@@ -116,6 +120,7 @@ def main():
 			bot.arm.set_ee_pose_components(x=0.18,z=0.2)
 			bot.gripper.open()
 			time.sleep(0.5)
+			#print(gripper_position)
 			bot.arm.set_single_joint_position("waist", -np.pi/2.0)
 			time.sleep(0.5)
 			bot.arm.set_ee_cartesian_trajectory(x = 0.15,z=0.02)
@@ -139,7 +144,7 @@ def main():
 		robot_position = bot.arm.get_joint_commands()
 		
      
-		if number_of_hands == 1 and hand_status >= 0.8 and hand_status <= 1 and hand_life >= 5 and emergencia == 1 and robot_position == [0.0, -0.452328098393586, -0.45814388830579644, 0.9104719866994214, -4.5103991595197685e-17]: #or palm_pointing < 0 and emergencia == 1 and hand_life > 5: 
+		if number_of_hands == 1 and hand_status >= 0.8 and hand_status <= 1 and hand_life >= 5 and emergencia == 1 and robot_position == [0.0, -0.452328098393586, -0.45814388830579644, 0.9104719866994214, -4.5103991595197685e-17]: 
          
 			if robot_position[0] <= 0 and robot_position[1] <= -1.7 and robot_position[2] >= 1.5 and robot_position[3] <= 0.9 and robot_position[4] <= 0.05:
 				exit()
@@ -149,10 +154,10 @@ def main():
 			bot.arm.set_ee_cartesian_trajectory(x=0.1, z=-0.16)
 			time.sleep(0.5)    
 			bot.arm.set_ee_cartesian_trajectory(x=0.08,z=-0.14)
+			time.sleep(0.5)
 			bot.gripper.open()
 			time.sleep(1)
 			bot.arm.set_ee_cartesian_trajectory(x=-0.08,z=0.14)
-			time.sleep(0.5)
 			bot.arm.set_ee_cartesian_trajectory(x=-0.1, z=0.16)
 			time.sleep(1)
 			bot.arm.set_single_joint_position("waist", 0)  
@@ -161,11 +166,11 @@ def main():
 			emergencia = 0
 			time.sleep(1)
                            
-		if number_of_hands == 1 and hand_status < 0.8 and hand_life >= 0.5  and emergencia == 1: #and palm_pointing > 0
+		if number_of_hands == 1 and hand_status < 0.8 and hand_life >= 0.5  and emergencia == 1:
  
 			bot.arm.set_ee_pose_components(x=x_robot_control,y=y_robot_control, z = (z_robot_control+0.035)) 
  			
-			if x_rate <= 2.5 and x_rate >= -2.5 and y_rate <= 2.5 and y_rate >= -2.5 and z_rate <= 2.5 and z_rate >= -2.5 and hand_life > 6:
+			if x_rate <= 5 and x_rate >= -5 and y_rate <= 5 and y_rate >= -5 and z_rate <= 5 and z_rate >= -5 and hand_life > 3 and x_robot_control <= (x_robot_control_old + 0.02) and x_robot_control >= (x_robot_control_old - 0.02) and y_robot_control <= (y_robot_control_old + 0.02) and y_robot_control >= (y_robot_control_old - 0.02)  and z_robot_control <= (z_robot_control_old + 0.02) and z_robot_control >= (z_robot_control_old - 0.02):
 			
 				bot.arm.set_ee_pose_components(x=x_robot_control,y=y_robot_control,z=z_robot_control)       
 				bot.gripper.open()
@@ -177,8 +182,9 @@ def main():
 				emergencia = 0
 				time.sleep(1)
 			else: 
-         	
-         			#print("Please stop moving your hand!!")
+				x_robot_control_old = x_robot_control
+				y_robot_control_old = y_robot_control
+				z_robot_control_old = z_robot_control
 				continue
  
 		else: 
@@ -189,4 +195,4 @@ def main():
       
 
 if __name__ == '__main__': 
-    main()  
+    main()
