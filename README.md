@@ -38,3 +38,4 @@ catkin_make
 ```bash 
 source ~/catkin_ws/devel/setup.bash
 ```
+**3.** Extract the LeapMotion foulder and place it in a any desired location outside your catkin working space.
