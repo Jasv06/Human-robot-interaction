@@ -38,7 +38,7 @@ catkin_make
 ```bash 
 source ~/catkin_ws/devel/setup.bash
 ```
-**3.** Extract the LeapMotion foulder and place it in your desired location outside your catkin working space.
+**3.** Extract the LeapMotion folder and place it in your desired location outside your catkin working space.
 
 **4.** Go to the [Leap_client_demonstrator.py](/scripts/demonstrator_hold_hand/Leap_client_demonstrator.py) file and change the path in line 8 based on the location where you placed the folder LeapMotion.
 
