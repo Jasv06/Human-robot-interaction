@@ -21,11 +21,12 @@ For guidance on installation, development, environmental setup, and troubleshoot
 
 ## Current features
 - [Pick up and delivery of an object/piece while hand is being hold inside the sensor working area](/scripts/demonstrator_hold_hand)
-- Pick up and delivery of an object/piece with the posibility of switching hands
-- Pick up and deliver of differnt pieces placed in different locations
+- [Pick up an object once a signal is given to the robot](/scripts/Industrial_like_robot)
+- [Delivery of an object once the a hand is detected again](/scripts/Industrial_like_robot)
+- [Pick up and delivery of differnt objects/pieces placed in different locations]((/scripts/Industrial_like_robot))
 - Determinations of the hands status
 
-## Installation
+## Installation of this package
 **1.** Go to the source folder of your catkin workspace.
 ```bash 
 cd ~/catkin_ws/src
