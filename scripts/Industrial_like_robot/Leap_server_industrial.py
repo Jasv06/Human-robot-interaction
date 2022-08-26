@@ -7,7 +7,8 @@ import pickle
 from std_msgs.msg import Float32
 from geometry_msgs.msg import Point
 from std_msgs.msg import Int32
-import struct 
+import struct
+from human_robot_interaction.msg import * 
 
 localIP = "127.0.0.1"
 Port = 57410
@@ -38,7 +39,7 @@ def leap_data():
   pub_palm_position_stable = rospy.Publisher('hand_position_stable', Point, queue_size = 1)
   #pub_hand_velocity_right = rospy.Publisher('Hand_velocity', Point, queue_size = 10)
   pub_life_of_hand = rospy.Publisher('life_of_hand', Float32, queue_size = 1)
-  pub_hand_normal = rospy.Publisher('hand_normal', Float32, queue_size = 1)
+  pub_hand_orientation = rospy.Publisher('hand_orientation', orientation, queue_size = 1)
   pub_hand_rate_of_change = rospy.Publisher('hand_rate_of_change', Point, queue_size = 1)
   
   rate = rospy.Rate(50)
@@ -47,10 +48,11 @@ def leap_data():
   
      coordinates = Point() 
      rate_of_change = Point()
+     orientation_of_hand = orientation()
     
      data, address = s.recvfrom(4096)
           
-     data = struct.unpack('<12f', data)      
+     data = struct.unpack('<21f', data)      
      
      number_of_hand_in_frame = data[0]
      
@@ -70,12 +72,24 @@ def leap_data():
      rate_of_change.y = data[9]
      rate_of_change.z = data[10]
      
+     orientation_of_hand.x_basis[0] = data[11]
+     orientation_of_hand.x_basis[1] = data[12]
+     orientation_of_hand.x_basis[2] = data[13]
+     
+     orientation_of_hand.y_basis[0] = data[14]
+     orientation_of_hand.y_basis[1] = data[15]
+     orientation_of_hand.y_basis[2] = data[16]
+     
+     orientation_of_hand.z_basis[0] = data[17]
+     orientation_of_hand.z_basis[1] = data[18]
+     orientation_of_hand.z_basis[2] = data[19]
+     
      pub_number_of_hands.publish(number_of_hand_in_frame)
      pub_hand_state.publish(strength)
      pub_hand_id.publish(hand_identifier)
      pub_palm_position_stable.publish(coordinates)
      pub_life_of_hand.publish(life_of_hand_in_sensor)
-     pub_hand_normal.publish(palm_direction)
+     pub_hand_orientation.publish(orientation_of_hand)
      pub_hand_rate_of_change.publish(rate_of_change)
      
      rate.sleep()

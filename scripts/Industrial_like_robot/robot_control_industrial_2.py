@@ -22,7 +22,8 @@ hand_status = 2.0
 
 hand_life = 0.0
 
-palm_direction = 0.0
+palm_direction_up = False
+palm_direction_down = False
 
 x_rate_of_change = 0.0
 y_rate_of_change = 0.0
@@ -66,11 +67,13 @@ def xyz_rate_of_change(data):
    y_rate_of_change = data.y
    z_rate_of_change = data.z  
 
-def palm_normal_direction(data): 
+def palm_direction(data): 
    
-   global palm_direction
+   global palm_direction_up
+   global palm_direction_down
    
-   palm_direction = data.data
+   palm_direction_up = data.pointing_up
+   palm_direction_down = data.pointing_down
    
    
 def main():
@@ -95,7 +98,7 @@ def main():
 		rospy.Subscriber("/Robot_coordinates", Point, xyz)
 		rospy.Subscriber("/hand_status", handstatus, hand)
 		rospy.Subscriber("/rate_of_change", Point, xyz_rate_of_change)
-		rospy.Subscriber("/palm_direction_for_robot", Float32, palm_normal_direction)
+		rospy.Subscriber("/palm_direction_for_robot", up_or_down, palm_direction)
                      
 		x_robot_control = x
 		y_robot_control = y
@@ -108,8 +111,6 @@ def main():
 		x_rate = x_rate_of_change
 		y_rate = y_rate_of_change
 		z_rate = z_rate_of_change
-      
-		palm_pointing = palm_direction
       
 		if number_of_hands == 1 and counter_uno == counter_dos and hand_life >= 0.5: 
          

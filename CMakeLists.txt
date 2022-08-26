@@ -54,6 +54,9 @@ find_package(catkin REQUIRED COMPONENTS
    JointGroupCommand.msg
    JointSingleCommand.msg
    handstatus.msg
+   orientation.msg
+   up_or_down.msg
+   
 #   Message2.msg
 )
 

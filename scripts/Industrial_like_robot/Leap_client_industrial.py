@@ -45,7 +45,7 @@ class LeapMotionListener(Leap.Listener):
         handnummer  = len(frame.hands)
         
         if handnummer < 1:
-           #print("No hand in frame so the data being sent has default values!!!")
+           
            LeapMotionListener.ctr = 0.5
            strength = 2
            hand_identifier = 0
@@ -55,13 +55,13 @@ class LeapMotionListener(Leap.Listener):
            filtered_hand = [0,0,0]
            hand_speed  = [0,0,0]
            life_time_of_hand = 0
-           bytes = [0,strength,hand_identifier,filtered_hand[0],filtered_hand[1],filtered_hand[2],life_time_of_hand,0,0,0,0,1]
-           info = struct.pack('<12f', *bytes)
+           bytes = [0,strength,hand_identifier,filtered_hand[0],filtered_hand[1],filtered_hand[2],life_time_of_hand,0,0,0,0,0,0,0,0,0,0,0,0,0,1]
+           info = struct.pack('<21f', *bytes)
            UDPSocket.sendto(info ,AddressPort)
            time.sleep(0.05)
         self.id = LeapMotionListener.ctr
         x_direction = 0
-        #normal = 0
+        
         if handnummer > 0:
             print "Hands: %d" % (handnummer)
                      
@@ -76,26 +76,28 @@ class LeapMotionListener(Leap.Listener):
             
             hand_direction = hand.direction
             normal = hand.palm_normal
-            #print(hand.palm_normal)
             print(hand.palm_velocity)
             basis = hand.basis
-            x_basis = basis.x_basis
-            y_basis = basis.y_basis
-            z_basis = basis.z_basis
-            
-            #if hand.is_left:
-            
-            #	normal = hand.palm_normal
-            	#print(x_direction)
-            	
-            #elif hand.is_right:
-            
-            #	normal = hand.palm_normal*(-1)
-            	#print(x_direction)
-            #print("hand normal x: %f" % normal[0])	
-            print("hand normal y: %f" % normal[1])
-            #print("hand normal z: %f" % normal[2])
             print("confidence level: %f" % hand.confidence)
+            
+            if hand.is_left:
+                x_basis = basis.x_basis
+                y_basis = basis.y_basis
+                z_basis = basis.z_basis
+                print(x_basis)
+                print(y_basis)
+                print(z_basis)
+            	
+            elif hand.is_right:
+            
+                x_basis = basis.x_basis#*-1
+                y_basis = basis.y_basis#*-1
+                z_basis = basis.z_basis#*-1
+                print(x_basis)
+                print(y_basis)
+                print(z_basis)
+            
+            
             strength = hand.grab_strength
             hand_identifier = hand.id
             pitch = hand.direction.pitch
@@ -104,13 +106,13 @@ class LeapMotionListener(Leap.Listener):
             filtered_hand = hand.stabilized_palm_position
             hand_speed  = hand.palm_velocity
                         
-            bytes = [len(frame.hands),strength,hand_identifier,filtered_hand[0],filtered_hand[1],filtered_hand[2],life_time_of_hand,normal[1],hand_speed[0],hand_speed[1],hand_speed[2],1]
+            bytes = [len(frame.hands),strength,hand_identifier,filtered_hand[0],filtered_hand[1],filtered_hand[2],life_time_of_hand,normal[1],hand_speed[0],hand_speed[1],hand_speed[2], x_basis[0],x_basis[1],x_basis[2],y_basis[0],y_basis[1],y_basis[2],z_basis[0],z_basis[1],z_basis[2],1]
             
             if handnummer == 1 and self.id <= life_time_of_hand and life_time_of_hand <= (self.id + 0.04):
             #if handnummer == 1 and life_time_of_hand >= 4 and life_time_of_hand < 4 + 0.01:
                LeapMotionListener.ctr += 0.5
                
-               info = struct.pack('<12f', *bytes)
+               info = struct.pack('<21f', *bytes)
           
                UDPSocket.sendto(info ,AddressPort)
                time.sleep(0.05)

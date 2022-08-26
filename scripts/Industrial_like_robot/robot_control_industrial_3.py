@@ -22,7 +22,8 @@ hand_status = 2.0
 
 hand_life = 0.0
 
-palm_direction = 0.0
+palm_direction_up = False
+palm_direction_down = False
 
 x_rate_of_change = 0.0
 y_rate_of_change = 0.0
@@ -66,11 +67,13 @@ def xyz_rate_of_change(data):
    y_rate_of_change = data.y
    z_rate_of_change = data.z  
 
-def palm_normal_direction(data): 
+def palm_direction(data): 
    
-   global palm_direction
+   global palm_direction_up
+   global palm_direction_down
    
-   palm_direction = data.data
+   palm_direction_up = data.pointing_up
+   palm_direction_down = data.pointing_down
    
    
 def main():
@@ -103,7 +106,7 @@ def main():
 		rospy.Subscriber("/Robot_coordinates", Point, xyz)
 		rospy.Subscriber("/hand_status", handstatus, hand)
 		rospy.Subscriber("/rate_of_change", Point, xyz_rate_of_change)
-		rospy.Subscriber("/palm_direction_for_robot", Float32, palm_normal_direction)
+		rospy.Subscriber("/palm_direction_for_robot", up_or_down, palm_direction)
                      
 		x_robot_control = x
 		y_robot_control = y
@@ -116,8 +119,7 @@ def main():
 		x_rate = x_rate_of_change
 		y_rate = y_rate_of_change
 		z_rate = z_rate_of_change
-      
-		palm_pointing = palm_direction
+     
       
 		if number_of_hands == 1 and counter_uno == counter_dos and hand_life >= 0.5: 
 			
@@ -228,7 +230,7 @@ def main():
 		robot_position = bot.arm.get_joint_commands()
 		
      
-		if number_of_hands == 1 and hand_status >= 0.8 and hand_status <= 1 and hand_life >= 3 and emergencia == 1: #or palm_pointing < 0 and emergencia == 1 and hand_life > 5: 
+		if number_of_hands == 1 and hand_status >= 0.8 and hand_status <= 1 and hand_life >= 3 and emergencia == 1: or palm_direction_down == True and emergencia == 1 and hand_life > 3: 
          
 			if robot_position[0] <= 0 and robot_position[1] <= -1.7 and robot_position[2] >= 1.5 and robot_position[3] <= 0.9 and robot_position[4] <= 0.05:
 				exit()
@@ -318,7 +320,7 @@ def main():
 			else: 
 				continue 				
 				
-		if number_of_hands == 1 and hand_status < 0.8 and hand_life >= 0.5 and emergencia == 1:#and palm_pointing > 0
+		if number_of_hands == 1 and hand_status < 0.8 and hand_life >= 0.5 and emergencia == 1 and palm_direction_up == True:
  
 			bot.arm.set_ee_pose_components(x=x_robot_control,y=y_robot_control, z = (z_robot_control+0.035)) 
  			
