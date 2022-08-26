@@ -228,7 +228,7 @@ def main():
 		robot_position = bot.arm.get_joint_commands()
 		
      
-		if number_of_hands == 1 and hand_status >= 0.8 and hand_status <= 1 and hand_life >= 5 and emergencia == 1: #or palm_pointing < 0 and emergencia == 1 and hand_life > 5: 
+		if number_of_hands == 1 and hand_status >= 0.8 and hand_status <= 1 and hand_life >= 3 and emergencia == 1: #or palm_pointing < 0 and emergencia == 1 and hand_life > 5: 
          
 			if robot_position[0] <= 0 and robot_position[1] <= -1.7 and robot_position[2] >= 1.5 and robot_position[3] <= 0.9 and robot_position[4] <= 0.05:
 				exit()
@@ -250,6 +250,7 @@ def main():
 				bot.arm.go_to_sleep_pose()        
 				counter_dos = 0
 				emergencia = 0
+				counter = counter - 1 
 				time.sleep(1)
 				
 			elif drop == 1 and robot_position == [0.0, -0.1431028024781285, -0.9939358192110259, 1.245021987624909, 1.0457262282043245e-16]:
@@ -259,25 +260,26 @@ def main():
 				time.sleep(0.5)
 				bot.arm.set_ee_cartesian_trajectory(x = 0.22,z=0.017)
 				time.sleep(0.5) 
-				bot.arm.set_single_joint_position("wrist_rotate",position=0.44)
-				time.sleep(0.5)
 				bot.arm.set_single_joint_position("wrist_angle",position=1.3)
 				time.sleep(0.5)
-				bot.gripper.open()
-				bot.arm.set_single_joint_position("wrist_angle",position=0)
+				bot.arm.set_single_joint_position("wrist_rotate",position=0.44)
 				time.sleep(0.5)
+				bot.gripper.open()
 				bot.arm.set_single_joint_position("wrist_rotate",position=0)
+				time.sleep(0.5)
+				bot.arm.set_single_joint_position("wrist_angle",position=0)
 				time.sleep(0.5)
 				bot.arm.set_ee_cartesian_trajectory(x=-0.15, z=0.18)
 				bot.arm.set_single_joint_position("waist", 0)
 				bot.arm.go_to_sleep_pose()
 				counter_dos = 0
 				emergencia = 0
+				counter = counter - 1 
 				time.sleep(1)
 				
 			elif drop == 2 and robot_position == [0.0, -0.45232809839358706, -0.4581438883057943, 0.91047198669942, -2.47275898276998e-17]:
 				bot.arm.set_ee_pose_components(x=0.18,z=0.2)
-				bot.arm.set_single_joint_position("waist", -np.pi/2.5)
+				bot.arm.set_single_joint_position("waist", -np.pi/3.25)
 				time.sleep(0.5)
 				bot.arm.set_ee_cartesian_trajectory(x = 0.15,z=0.02)    
 				time.sleep(0.5)
@@ -291,6 +293,7 @@ def main():
 				bot.arm.go_to_sleep_pose()
 				counter_dos = 0
 				emergencia = 0
+				counter = counter - 1 
 				time.sleep(1)
 				
 			elif drop == 3 and robot_position == [0.0, -0.45232809839358756, -0.45814388830579406, 0.9104719866994205, -1.90717601420712e-17]:
@@ -309,6 +312,7 @@ def main():
 				bot.arm.go_to_sleep_pose()
 				counter_dos = 0 
 				emergencia = 0 
+				counter = counter - 1 
 				time.sleep(1)
 				
 			else: 
