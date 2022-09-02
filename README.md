@@ -44,3 +44,6 @@ source ~/catkin_ws/devel/setup.bash
 **5.** Go to the [Leap_client_industrial.py](/scripts/Industrial_like_robot/Leap_client_industrial.py) file and change the path in line 8 based on the location where you placed the folder LeapMotion.
 
 ## Running the scripts
+If you didn't add `source $YOUR_WORKSPACE/devel/setup.bash` and `source /opt/ros/noetic/setup.bash` to your `.bashrc`, remember to source it when you open a new terminal.
+
+### Examples
