@@ -230,7 +230,7 @@ def main():
 		robot_position = bot.arm.get_joint_commands()
 		
      
-		if number_of_hands == 1 and hand_status >= 0.8 and hand_status <= 1 and hand_life >= 3 and emergencia == 1: or palm_direction_down == True and emergencia == 1 and hand_life > 3: 
+		if number_of_hands == 1 and hand_status >= 0.8 and hand_status <= 1 and hand_life >= 3 and emergencia == 1 or palm_direction_down == True and emergencia == 1 and hand_life > 3: 
          
 			if robot_position[0] <= 0 and robot_position[1] <= -1.7 and robot_position[2] >= 1.5 and robot_position[3] <= 0.9 and robot_position[4] <= 0.05:
 				exit()
@@ -314,15 +314,15 @@ def main():
 				bot.arm.go_to_sleep_pose()
 				counter_dos = 0 
 				emergencia = 0 
-				counter = counter - 1 
+				counter = 3 
 				time.sleep(1)
 				
 			else: 
 				continue 				
 				
-		if number_of_hands == 1 and hand_status < 0.8 and hand_life >= 0.5 and emergencia == 1 and palm_direction_up == True:
+		if number_of_hands == 1 and hand_status < 0.8 and hand_life >= 1 and emergencia == 1 and palm_direction_up == True:
  
-			bot.arm.set_ee_pose_components(x=x_robot_control,y=y_robot_control, z = (z_robot_control+0.035)) 
+			bot.arm.set_ee_pose_components(x=x_robot_control,y=y_robot_control, z = (z_robot_control+0.045)) 
  			
 			if x_rate <= 5 and x_rate >= -5 and y_rate <= 5 and y_rate >= -5 and z_rate <= 5 and z_rate >= -5 and hand_life > 3 and x_robot_control <= (x_robot_control_old + 0.02) and x_robot_control >= (x_robot_control_old - 0.02) and y_robot_control <= (y_robot_control_old + 0.02) and y_robot_control >= (y_robot_control_old - 0.02)  and z_robot_control <= (z_robot_control_old + 0.02) and z_robot_control >= (z_robot_control_old - 0.02):
 			
