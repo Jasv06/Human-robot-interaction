@@ -58,7 +58,7 @@ class LeapMotionListener(Leap.Listener):
            bytes = [0,strength,hand_identifier,filtered_hand[0],filtered_hand[1],filtered_hand[2],life_time_of_hand,0,0,0,0,0,0,0,0,0,0,0,0,0,1]
            info = struct.pack('<21f', *bytes)
            UDPSocket.sendto(info ,AddressPort)
-           time.sleep(0.05)
+           time.sleep(0.1)
         self.id = LeapMotionListener.ctr
         x_direction = 0
         
