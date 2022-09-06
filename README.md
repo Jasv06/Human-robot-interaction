@@ -47,12 +47,12 @@ source ~/catkin_ws/devel/setup.bash
 If you didn't add `source $YOUR_WORKSPACE/devel/setup.bash` and `source /opt/ros/noetic/setup.bash` to your `.bashrc`, remember to source it when you open a new terminal. Also, in the following example catkin_ws is the name of our workspace, but this could change depending on the name you gave to your workspace.
 
 ### Example
-#### Connecting the Leap motion 
+#### Connecting the Leap motion sensor
 1. Open a terminal and type:
 ```sh
 sudo leapd
 ```
-#### Use Leap Motion 
+#### Use the Leap Motion sensor
 2. Open a terminal, source it and type the following:
 ```sh
 cd ~/catkin_ws/src/human_robot_interaction/scripts/Industrial_like_robot
