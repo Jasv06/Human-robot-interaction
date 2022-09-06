@@ -75,5 +75,4 @@ roslaunch interbotix_xsarm_control xsarm_control.launch robot_model:=rx150
 ```sh
 cd ~/catkin_ws
 rosrun human_robot_interaction robot_control_industrial_3.py
-```
-rosrun 
+``` 
