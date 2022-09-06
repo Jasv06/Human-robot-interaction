@@ -44,6 +44,36 @@ source ~/catkin_ws/devel/setup.bash
 **5.** Go to the [Leap_client_industrial.py](/scripts/Industrial_like_robot/Leap_client_industrial.py) file and change the path in line 8 based on the location where you placed the folder LeapMotion.
 
 ## Running the scripts
-If you didn't add `source $YOUR_WORKSPACE/devel/setup.bash` and `source /opt/ros/noetic/setup.bash` to your `.bashrc`, remember to source it when you open a new terminal.
+If you didn't add `source $YOUR_WORKSPACE/devel/setup.bash` and `source /opt/ros/noetic/setup.bash` to your `.bashrc`, remember to source it when you open a new terminal. Also, in the following example catkin_ws is the name of our workspace, but this could change depending on the name you gave to your workspace.
 
 ### Examples
+#### Connecting the Leap motion 
+1. Open a terminal and type:
+```sh
+sudo leapd
+```
+#### Use Leap Motion 
+2. Open a terminal, source it and type the following:
+```sh
+cd ~/catkin_ws/src/human_robot_interaction/scripts/Industrial_like_robot
+python2 Leap_client_industrial.py
+```
+#### Publishing the data extracted from the Leap motion sensor into ROS
+3. Open a new terminal, source it and type the following:
+```sh
+cd ~/catkin_ws
+roslaunch human_robot_interaction leap_ros_industrial.launch
+```
+#### Connecting to the Robot real robot
+4. Ensure the Robot is connected correctly, open a new terminal, source it and type the following:
+```sh
+cd ~/catkin_ws
+roslaunch interbotix_xsarm_control xsarm_control.launch robot_model:=rx150 
+```
+#### Controlling the real robot
+5. Finally, open one last terminal, source it and type the following:
+```sh
+cd ~/catkin_ws
+rosrun human_robot_interaction robot_control_industrial_3.py
+```
+rosrun 
