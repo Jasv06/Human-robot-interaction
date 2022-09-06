@@ -46,7 +46,7 @@ source ~/catkin_ws/devel/setup.bash
 ## Running the scripts
 If you didn't add `source $YOUR_WORKSPACE/devel/setup.bash` and `source /opt/ros/noetic/setup.bash` to your `.bashrc`, remember to source it when you open a new terminal. Also, in the following example catkin_ws is the name of our workspace, but this could change depending on the name you gave to your workspace.
 
-### Examples
+### Example
 #### Connecting the Leap motion 
 1. Open a terminal and type:
 ```sh
