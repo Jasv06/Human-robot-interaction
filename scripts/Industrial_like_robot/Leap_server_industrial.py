@@ -3,7 +3,6 @@ import sys
 import numpy as np
 import rospy
 import time 
-import pickle
 from std_msgs.msg import Float32
 from geometry_msgs.msg import Point
 from std_msgs.msg import Int32
@@ -30,14 +29,10 @@ def leap_data():
   """Hand state"""
   pub_hand_state = rospy.Publisher('hand_state', Float32, queue_size = 1)
   
-  """NOTE: the commented out publishers can be used they are already being transferred via the udp"""
   
   """hand publishers"""
-  #pub_palm_position_right = rospy.Publisher('/Leap/XYZ', Point, queue_size=10)
   pub_hand_id = rospy.Publisher('hand_id', Float32, queue_size = 1)
-  #pub_hand_angles_right = rospy.Publisher('LeapHandAngles', Point, queue_size = 10)
   pub_palm_position_stable = rospy.Publisher('hand_position_stable', Point, queue_size = 1)
-  #pub_hand_velocity_right = rospy.Publisher('Hand_velocity', Point, queue_size = 10)
   pub_life_of_hand = rospy.Publisher('life_of_hand', Float32, queue_size = 1)
   pub_hand_orientation = rospy.Publisher('hand_orientation', orientation, queue_size = 1)
   pub_hand_rate_of_change = rospy.Publisher('hand_rate_of_change', Point, queue_size = 1)
