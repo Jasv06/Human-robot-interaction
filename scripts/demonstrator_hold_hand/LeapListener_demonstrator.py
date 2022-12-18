@@ -50,14 +50,7 @@ def main():
    while not rospy.is_shutdown():
       
      coordenadas = Point()
-       
-     #rospy.Subscriber("/Leap/XYZ", Point, LeapXYZ_normal)
-     #rospy.Subscriber("/LeapHandAngles", Point)
      rospy.Subscriber("/hand_position_stable", Point, LeapXYZ_stable)
- 
-     #x_rob_normal = z_coordi_sensor 
-     #y_rob_normal = x_coordi_sensor
-     #z_rob_normal = y_coordi_sensor
       
      x_rob_stable = z_coordi_sensor_stable + 0.3 
      y_rob_stable = x_coordi_sensor_stable
@@ -75,7 +68,6 @@ def main():
      coordenadas.x = x_rob_stable
      coordenadas.y = y_rob_stable
      coordenadas.z = z_rob_stable
-     #print(coordenadas)
      pub.publish(coordenadas)
      r.sleep()
    
