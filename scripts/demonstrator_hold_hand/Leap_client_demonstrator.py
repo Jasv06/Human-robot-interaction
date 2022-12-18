@@ -1,6 +1,5 @@
 import socket
-import sys,thread ,time
-import pickle
+import sys,thread
 import time 
 import struct
 
@@ -45,7 +44,6 @@ class LeapMotionListener(Leap.Listener):
         handnummer  = len(frame.hands)
         
         if handnummer < 1:
-           #print("No hand in frame so the data being sent has default values!!!")
            LeapMotionListener.ctr = 4
            strength = 2
            hand_identifier = 0
@@ -84,7 +82,7 @@ class LeapMotionListener(Leap.Listener):
             bytes = [len(frame.hands),strength,hand_identifier,filtered_hand[0],filtered_hand[1],filtered_hand[2],life_time_of_hand,1]
             
             if handnummer == 1 and life_time_of_hand >= self.id and life_time_of_hand < (self.id + 0.02):
-            #if handnummer == 1 and life_time_of_hand >= 4 and life_time_of_hand < 4 + 0.01:
+             
                LeapMotionListener.ctr += 0.5
                
                info = struct.pack('<8f', *bytes)
