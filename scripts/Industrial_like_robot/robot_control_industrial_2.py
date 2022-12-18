@@ -136,8 +136,6 @@ def main():
 			counter_dos = 1
 			continue
          
-		"""dont forget to update the line below"""
-		#print(counter_dos)
 		robot_position = bot.arm.get_joint_commands()
       
      
