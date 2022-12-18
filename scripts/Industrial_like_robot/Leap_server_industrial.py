@@ -15,10 +15,7 @@ Port = 57410
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 s.bind((localIP, Port))
-  
-print("Do Ctrl+c to exit the program !!")
-print("####### Server is listening and publishing #######")
-   
+     
 def leap_data():
   
   rospy.init_node('Leap_data', anonymous = False)  
