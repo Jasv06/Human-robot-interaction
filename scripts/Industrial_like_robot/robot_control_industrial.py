@@ -10,8 +10,6 @@ from geometry_msgs.msg import Point
 from std_msgs.msg import Int32 
 from human_robot_interaction.msg import *
 
-"""Script with the ability to detect if your hand is upsidedown and if your hand is moving and it will drop object until your hand has stopped moving"""
-
 x = 0.3
 y = 0.0
 z = 0.3
