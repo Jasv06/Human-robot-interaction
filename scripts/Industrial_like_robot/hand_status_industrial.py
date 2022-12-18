@@ -54,7 +54,6 @@ def main():
      msg.handID = hand_id
      msg.handstates = hand_open_or_close
      
-     #print(msg)
      
      pub.publish(msg)
      r.sleep()
