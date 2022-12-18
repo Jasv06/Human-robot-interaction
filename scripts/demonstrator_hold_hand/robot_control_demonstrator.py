@@ -97,8 +97,6 @@ def main():
          RO = bot.arm.get_joint_commands()
          print(RO)
          continue
-         
-      """dont forget to update the line below"""
       
       robot_position = bot.arm.get_joint_commands()
 
@@ -120,9 +118,6 @@ def main():
                            
       if hand_status < 0.5 and hand_life >= 4 and robot_position == [0.0, -0.45232809839358673, -0.4581438883057948, 0.9104719866994206, -4.679863967772227e-17]:
       
-         #if robot_position[0] == 0 and robot_position[1] <= -1.7 and robot_position[2] >= 1.5 and robot_position[3] >= 0.8 and robot_position[4] == 0:
-            #exit()
-            
          bot.arm.set_ee_pose_components(x=x_robot_control,y=y_robot_control,z=z_robot_control)       
          bot.gripper.open()
          time.sleep(1)
