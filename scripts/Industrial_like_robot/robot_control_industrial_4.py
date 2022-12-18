@@ -10,7 +10,7 @@ from geometry_msgs.msg import Point
 from std_msgs.msg import Int32 
 from human_robot_interaction.msg import *
 
-"""Script with the ability to detect if your hand is upsidedown and if your hand is moving and it will drop object till your hand has stopped moving"""
+"""Script with the ability to detect if your hand is upsidedown and if your hand is moving and it will drop object until your hand has stopped moving"""
 
 x = 0.3
 y = 0.0
@@ -140,7 +140,6 @@ def main():
 			counter_dos = 1
 			continue
          
-		"""dont forget to update the line below"""
 		robot_position = bot.arm.get_joint_commands()
 		
      
