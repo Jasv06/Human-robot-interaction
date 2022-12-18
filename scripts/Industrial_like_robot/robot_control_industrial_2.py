@@ -175,8 +175,7 @@ def main():
 				emergencia = 0 
 				time.sleep(1)
 			else: 
-         	
-         			#print("Please stop moving your hand!!")
+     
 				continue
  
 		else: 
