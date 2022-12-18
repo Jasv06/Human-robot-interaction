@@ -1,6 +1,5 @@
 import socket
-import sys,thread ,time
-import pickle
+import sys, thread
 import time 
 import struct
 
@@ -59,6 +58,7 @@ class LeapMotionListener(Leap.Listener):
            info = struct.pack('<21f', *bytes)
            UDPSocket.sendto(info ,AddressPort)
            time.sleep(0.1)
+           
         self.id = LeapMotionListener.ctr
         x_direction = 0
         
@@ -90,9 +90,9 @@ class LeapMotionListener(Leap.Listener):
             	
             elif hand.is_right:
             
-                x_basis = basis.x_basis#*-1
-                y_basis = basis.y_basis#*-1
-                z_basis = basis.z_basis#*-1
+                x_basis = basis.x_basis
+                y_basis = basis.y_basis
+                z_basis = basis.z_basis
                 print(x_basis)
                 print(y_basis)
                 print(z_basis)
@@ -109,7 +109,7 @@ class LeapMotionListener(Leap.Listener):
             bytes = [len(frame.hands),strength,hand_identifier,filtered_hand[0],filtered_hand[1],filtered_hand[2],life_time_of_hand,normal[1],hand_speed[0],hand_speed[1],hand_speed[2], x_basis[0],x_basis[1],x_basis[2],y_basis[0],y_basis[1],y_basis[2],z_basis[0],z_basis[1],z_basis[2],1]
             
             if handnummer == 1 and self.id <= life_time_of_hand and life_time_of_hand <= (self.id + 0.04):
-            #if handnummer == 1 and life_time_of_hand >= 4 and life_time_of_hand < 4 + 0.01:
+            
                LeapMotionListener.ctr += 0.5
                
                info = struct.pack('<21f', *bytes)
