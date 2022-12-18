@@ -10,8 +10,6 @@ from geometry_msgs.msg import Point
 from std_msgs.msg import Int32 
 from human_robot_interaction.msg import *
 
-"""Script with the ability to detect if your hand is upsidedown and if your hand is moving. The object will be dropped until your hand has stopped moving"""
-
 x = 0.3
 y = 0.0
 z = 0.3
@@ -120,7 +118,6 @@ def main():
 			bot.arm.set_ee_pose_components(x=0.18,z=0.2)
 			bot.gripper.open()
 			time.sleep(0.5)
-			#print(gripper_position)
 			bot.arm.set_single_joint_position("waist", -np.pi/2.0)
 			time.sleep(0.5)
 			bot.arm.set_ee_cartesian_trajectory(x = 0.15,z=0.02)
@@ -184,7 +181,7 @@ def main():
 				x_robot_control_old = x_robot_control
 				y_robot_control_old = y_robot_control
 				z_robot_control_old = z_robot_control
-         			#print("Please stop moving your hand!!")
+         			print("Please stop moving your hand!!")
 				continue
  
 		else: 
