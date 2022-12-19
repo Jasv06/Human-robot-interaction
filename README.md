@@ -1,8 +1,4 @@
 ![](Images/IMG_6493.JPG)
-## What is HRI? 
-Human Robot Interaction(HRI) is the field of studies dedicated to the understanding and evaluation of robotic systems for the use by or with humans. This interaction involves the communication or direct involvement with someone or something. In our case this refers to the constant communication between the robot and the human via messages. Among the different types of interactions we can find visual interaction, touch interaction or sound interaction. 
-
-Consequently, this project aims to develop different concepts for the cooperation between an industrial-like robot and a human operator. For this purpose, the sensor systems LeapMotion and Astra are used to determine the motion of the human operator. The motion is provided directly in a skeleton model. Thus the robot(ReactorX-150) acquires the ability to interact in the smoothest possible way.
 
 ## Requierments and supported platforms
 ### Supported platforms/releases:
