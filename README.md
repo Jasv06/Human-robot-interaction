@@ -64,13 +64,13 @@ python2 Leap_client_industrial.py
 cd ~/catkin_ws
 roslaunch human_robot_interaction leap_ros_industrial.launch
 ```
-#### Connecting to the Robot real robot
+#### Connecting to the Robot
 4. Ensure the Robot is connected correctly, open a new terminal, source it and type the following:
 ```sh
 cd ~/catkin_ws
 roslaunch interbotix_xsarm_control xsarm_control.launch robot_model:=rx150 
 ```
-#### Controlling the real robot
+#### Controlling the robot
 5. Finally, open one last terminal, source it and type the following:
 ```sh
 cd ~/catkin_ws
